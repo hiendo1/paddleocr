@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# OCR Models & Cache
+.paddlex/
+.paddleocr/
+onnx_models/
+
+# Test Data
+test_case/
+*.jpg
+*.jpeg
+*.png
+*.webp
+benchmark_results_*.json
+
+# Local config
+.dockerignore
+docker-compose.yml
+Dockerfile
+requirements_paddle.txt
+ocr_processor.py
+ocr_processor_doctr.py
+test_api.py
+test_easyocr.py
+benchmark_doctr.py
+benchmark_easyocr.py
+docker_guide.md
+*.log

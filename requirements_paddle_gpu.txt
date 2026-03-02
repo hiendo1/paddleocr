@@ -1,0 +1,9 @@
+paddleocr==2.8.1
+paddlepaddle-gpu==2.6.2
+numpy<2.0.0
+fastapi
+uvicorn
+python-multipart
+opencv-python
+PyYAML
+anyio

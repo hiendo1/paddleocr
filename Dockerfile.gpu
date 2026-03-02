@@ -1,0 +1,35 @@
+# Use NVIDIA CUDA base image for GPU support
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    DEBIAN_FRONTEND=noninteractive
+
+# Install Python and system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.10 \
+    python3-pip \
+    python3-dev \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set python3 as default python
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+WORKDIR /app
+
+# Copy requirements and install GPU version of Paddle
+COPY requirements_paddle_gpu.txt .
+RUN pip install --no-cache-dir -r requirements_paddle_gpu.txt
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 8001
+
+# Command to run the application
+CMD ["uvicorn", "app_paddle:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "1"]
