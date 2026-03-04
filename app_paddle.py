@@ -10,6 +10,14 @@ from pydantic import BaseModel
 
 app = FastAPI(title="PaddleOCR-Docker")
 
+@app.get("/")
+def home():
+    return {"message": "PaddleOCR API is running. Visit /docs for API documentation."}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy", "gpu": paddle.is_compiled_with_cuda()}
+
 import paddle
 
 # Initialize PaddleOCR
