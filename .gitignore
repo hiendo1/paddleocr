@@ -29,12 +29,17 @@ benchmark_results_*.json
 .dockerignore
 docker-compose.yml
 Dockerfile
-requirements_paddle.txt
-ocr_processor.py
-ocr_processor_doctr.py
-test_api.py
-test_easyocr.py
-benchmark_doctr.py
-benchmark_easyocr.py
-docker_guide.md
+# Local scripts & test files
+app.py
+app_hf.py
+benchmark_results.json
+colab_guide.md
+debug_paddle.py
+ocr_processor_easy.py
+packages.txt
+test_batch_parallel.py
+test_paddle_batch_format.py
+test_batch.py
+glm_ocr/
+
 *.log
