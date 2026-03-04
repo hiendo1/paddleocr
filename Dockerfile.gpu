@@ -29,7 +29,8 @@ RUN pip install --no-cache-dir -r requirements_paddle_gpu.txt
 COPY . .
 
 # Expose port
-EXPOSE 8001
+EXPOSE 8000
 
 # Command to run the application
-CMD ["uvicorn", "app_paddle:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "1"]
+# We use 1 worker because the Python code itself handles concurrency via threadpool
+CMD ["uvicorn", "app_paddle:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

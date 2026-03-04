@@ -1,6 +1,6 @@
 paddleocr==2.8.1
 paddlepaddle-gpu==2.6.2
-numpy<2.0.0
+numpy>=1.24.0,<2.0.0
 fastapi
 uvicorn
 python-multipart

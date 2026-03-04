@@ -2,8 +2,8 @@ import requests
 import os
 import time
 
-# API URL (Dockerized PaddleOCR)
-URL = "http://localhost:8001/ocr/predict"
+# API URL (Remote Google Colab via ngrok)
+URL = "https://organomagnesium-secondarily-alisia.ngrok-free.dev/ocr/predict"
 
 # Directory containing test images
 IMAGE_DIR = r"c:\Users\Admin\Desktop\cleanup service\test_case"
