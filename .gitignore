@@ -30,16 +30,13 @@ benchmark_results_*.json
 docker-compose.yml
 Dockerfile
 # Local scripts & test files
-app.py
-app_hf.py
-benchmark_results.json
-colab_guide.md
-debug_paddle.py
-ocr_processor_easy.py
-packages.txt
-test_batch_parallel.py
-test_paddle_batch_format.py
-test_batch.py
-glm_ocr/
+!test_batch_parallel.py
+!test_paddle_batch_format.py
+!test_batch.py
+!test_result_viewer.py
+!colab_guide.md
+!docker-compose.yml
+!deployment_checklist.md
+!docker_guide.md
 
 *.log

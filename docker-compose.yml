@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  ocr-service:
+    build: .
+    ports:
+      - "8001:8000" # Mapping local port 8001 to container port 8000
+    volumes:
+      - ./test_case:/app/test_case # Mapping local test_case folder
+    restart: always
