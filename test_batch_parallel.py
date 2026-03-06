@@ -12,9 +12,9 @@ IMAGE_DIR = r"c:\Users\Admin\Desktop\cleanup service\test_case"
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
-# Parallel settings
-MAX_WORKERS = 10  # Reduced slightly for stability with ngrok free tier
-BATCH_SIZE = 8     
+# Parallel settings (Optimized for A16)
+MAX_WORKERS = 4  
+BATCH_SIZE = 32
 
 def send_request(batch_files):
     """Sends a single batch of images to the OCR API with retries."""
