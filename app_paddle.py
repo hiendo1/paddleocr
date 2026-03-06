@@ -71,13 +71,20 @@ async def predict_batch(files: List[UploadFile] = File(...)):
     if not images:
         return BatchResponse(total_images=0, total_latency_ms=0, results=[])
 
-    # 2. Perform Batch Inference on GPU
-    # We wrap the blocking OCR call in a semaphore to prevent GPU contention
+    # 2. Perform Inference
+    # PaddleOCR.ocr with det=True doesn't support a list of numpy arrays, so we loop over them.
+    # We wrap the blocking OCR call in a semaphore to prevent GPU OOM over-contention.
     async with gpu_semaphore:
-        # Run the CPU-heavy/blocking OCR in a thread to keep FastAPI responsive
         loop = asyncio.get_event_loop()
-        # PaddleOCR.ocr handles a list of images as a batch
-        all_outputs = await loop.run_in_executor(None, lambda: ocr.ocr(images, cls=True))
+        all_outputs = []
+        for img in images:
+            # Chạy OCR từng ảnh trong executor để không block hệ thống
+            img_out = await loop.run_in_executor(None, lambda i=img: ocr.ocr(i, cls=True))
+            # ocr.ocr trả về list of list. Với 1 ảnh sẽ trả về [ [lines] ]
+            if img_out and len(img_out) > 0 and img_out[0]:
+                all_outputs.append(img_out[0])
+            else:
+                all_outputs.append([])
 
     # 3. Parse results
     file_results = []

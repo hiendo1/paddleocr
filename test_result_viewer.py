@@ -56,7 +56,7 @@ def main():
     print(f"[*] Tim thay tong cong {len(images)} anh. Se hien thi ket qua cua 10 anh dau tien.")
     
     # Chạy thử 3 ảnh đầu để xem cấu trúc kết quả
-    for img_path in images[:1]:
+    for img_path in images[:3]:
         test_single_image(img_path)
 
 if __name__ == "__main__":
